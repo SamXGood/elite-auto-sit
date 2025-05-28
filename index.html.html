@@ -1,0 +1,1396 @@
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoParts.kz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+        
+        .logo span {
+            color: white;
+        }
+        
+        .contacts {
+            text-align: right;
+        }
+        
+        .phone {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        nav {
+            background-color: #34495e;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #2c3e50;
+        }
+        
+        nav ul li a.active {
+            background-color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .banner {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x300');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 30px;
+        }
+        
+        .banner h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #f39c12;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .main {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            margin-right: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-widget h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: #2c3e50;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        
+        .category-list a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-list a:hover {
+            color: #f39c12;
+        }
+        
+        .category-list a.active {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .catalog {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #e67e22;
+        }
+        
+        .favorite {
+            background-color: transparent;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .favorite.active {
+            color: #e74c3c;
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-overlay.active {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-title {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            background-color: #eee;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-item-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            font-size: 14px;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .cart-total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .favorites-icon {
+            position: relative;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        
+        .favorites-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .checkout-form {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .checkout-form h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .back-to-cart {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .submit-order {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .page {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .page h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .page p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            width: 30%;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #f39c12;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f39c12;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">Auto<span>Parts.kz</span></div>
+                <div class="contacts">
+                    <div class="phone">+7-705-529-93-50</div>
+                    <div>г. Семей, ул. Автозапчастей, 123</div>
+                </div>
+                <div class="favorites-icon" onclick="toggleFavorites()">
+                    ♥
+                    <span class="favorites-count" id="favorites-count">0</span>
+                </div>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+                    <li><a href="#" class="nav-link" data-page="catalog">Каталог</a></li>
+                    <li><a href="#" class="nav-link" data-page="favorites">Избранное</a></li>
+                    <li><a href="#" class="nav-link" data-page="delivery">Доставка и оплата</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">О компании</a></li>
+                    <li><a href="#" class="nav-link" data-page="contacts">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="page active" id="home-page">
+        <section class="banner">
+            <div class="container">
+                <h1>Автозапчасти для любых марок автомобилей</h1>
+                <p>Широкий ассортимент оригинальных и неоригинальных запчастей с доставкой по всему Казахстану</p>
+                <a href="#" class="btn nav-link" data-page="catalog">Перейти в каталог</a>
+            </div>
+        </section>
+        
+        <div class="container">
+            <div class="main">
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Категории</h3>
+                        <ul class="category-list" id="category-list">
+                            <li><a href="#" onclick="filterByCategory('all')" class="active">Все категории</a></li>
+                            <li><a href="#" onclick="filterByCategory('engine')">Двигатель</a></li>
+                            <li><a href="#" onclick="filterByCategory('transmission')">Трансмиссия</a></li>
+                            <li><a href="#" onclick="filterByCategory('suspension')">Подвеска</a></li>
+                            <li><a href="#" onclick="filterByCategory('brakes')">Тормозная система</a></li>
+                            <li><a href="#" onclick="filterByCategory('electrics')">Электрика</a></li>
+                            <li><a href="#" onclick="filterByCategory('body')">Кузовные детали</a></li>
+                            <li><a href="#" onclick="filterByCategory('interior')">Салон</a></li>
+                            <li><a href="#" onclick="filterByCategory('filters')">Фильтры</a></li>
+                            <li><a href="#" onclick="filterByCategory('oils')">Масла и жидкости</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Производители</h3>
+                        <ul class="category-list" id="brand-list">
+                            <li><a href="#" onclick="filterByBrand('all')" class="active">Все производители</a></li>
+                            <li><a href="#" onclick="filterByBrand('toyota')">Toyota</a></li>
+                            <li><a href="#" onclick="filterByBrand('lexus')">Lexus</a></li>
+                            <li><a href="#" onclick="filterByBrand('nissan')">Nissan</a></li>
+                            <li><a href="#" onclick="filterByBrand('hyundai')">Hyundai</a></li>
+                            <li><a href="#" onclick="filterByBrand('kia')">Kia</a></li>
+                            <li><a href="#" onclick="filterByBrand('bmw')">BMW</a></li>
+                            <li><a href="#" onclick="filterByBrand('mercedes')">Mercedes</a></li>
+                            <li><a href="#" onclick="filterByBrand('audi')">Audi</a></li>
+                            <li><a href="#" onclick="filterByBrand('volkswagen')">Volkswagen</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                
+                <main class="catalog">
+                    <h2 class="section-title">Популярные товары</h2>
+                    
+                    <div class="products" id="products-container">
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page" id="catalog-page">
+        <div class="container">
+            <div class="main">
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Категории</h3>
+                        <ul class="category-list" id="category-list-catalog">
+                            <li><a href="#" onclick="filterByCategory('all')" class="active">Все категории</a></li>
+                            <li><a href="#" onclick="filterByCategory('engine')">Двигатель</a></li>
+                            <li><a href="#" onclick="filterByCategory('transmission')">Трансмиссия</a></li>
+                            <li><a href="#" onclick="filterByCategory('suspension')">Подвеска</a></li>
+                            <li><a href="#" onclick="filterByCategory('brakes')">Тормозная система</a></li>
+                            <li><a href="#" onclick="filterByCategory('electrics')">Электрика</a></li>
+                            <li><a href="#" onclick="filterByCategory('body')">Кузовные детали</a></li>
+                            <li><a href="#" onclick="filterByCategory('interior')">Салон</a></li>
+                            <li><a href="#" onclick="filterByCategory('filters')">Фильтры</a></li>
+                            <li><a href="#" onclick="filterByCategory('oils')">Масла и жидкости</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Производители</h3>
+                        <ul class="category-list" id="brand-list-catalog">
+                            <li><a href="#" onclick="filterByBrand('all')" class="active">Все производители</a></li>
+                            <li><a href="#" onclick="filterByBrand('toyota')">Toyota</a></li>
+                            <li><a href="#" onclick="filterByBrand('lexus')">Lexus</a></li>
+                            <li><a href="#" onclick="filterByBrand('nissan')">Nissan</a></li>
+                            <li><a href="#" onclick="filterByBrand('hyundai')">Hyundai</a></li>
+                            <li><a href="#" onclick="filterByBrand('kia')">Kia</a></li>
+                            <li><a href="#" onclick="filterByBrand('bmw')">BMW</a></li>
+                            <li><a href="#" onclick="filterByBrand('mercedes')">Mercedes</a></li>
+                            <li><a href="#" onclick="filterByBrand('audi')">Audi</a></li>
+                            <li><a href="#" onclick="filterByBrand('volkswagen')">Volkswagen</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                
+                <main class="catalog">
+                    <h2 class="section-title" id="catalog-title">Все товары</h2>
+                    
+                    <div class="products" id="products-container-catalog">
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page" id="favorites-page">
+        <div class="container">
+            <div class="main">
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Категории</h3>
+                        <ul class="category-list" id="category-list-favorites">
+                            <li><a href="#" onclick="filterByCategory('all')" class="active">Все категории</a></li>
+                            <li><a href="#" onclick="filterByCategory('engine')">Двигатель</a></li>
+                            <li><a href="#" onclick="filterByCategory('transmission')">Трансмиссия</a></li>
+                            <li><a href="#" onclick="filterByCategory('suspension')">Подвеска</a></li>
+                            <li><a href="#" onclick="filterByCategory('brakes')">Тормозная система</a></li>
+                            <li><a href="#" onclick="filterByCategory('electrics')">Электрика</a></li>
+                            <li><a href="#" onclick="filterByCategory('body')">Кузовные детали</a></li>
+                            <li><a href="#" onclick="filterByCategory('interior')">Салон</a></li>
+                            <li><a href="#" onclick="filterByCategory('filters')">Фильтры</a></li>
+                            <li><a href="#" onclick="filterByCategory('oils')">Масла и жидкости</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Производители</h3>
+                        <ul class="category-list" id="brand-list-favorites">
+                            <li><a href="#" onclick="filterByBrand('all')" class="active">Все производители</a></li>
+                            <li><a href="#" onclick="filterByBrand('toyota')">Toyota</a></li>
+                            <li><a href="#" onclick="filterByBrand('lexus')">Lexus</a></li>
+                            <li><a href="#" onclick="filterByBrand('nissan')">Nissan</a></li>
+                            <li><a href="#" onclick="filterByBrand('hyundai')">Hyundai</a></li>
+                            <li><a href="#" onclick="filterByBrand('kia')">Kia</a></li>
+                            <li><a href="#" onclick="filterByBrand('bmw')">BMW</a></li>
+                            <li><a href="#" onclick="filterByBrand('mercedes')">Mercedes</a></li>
+                            <li><a href="#" onclick="filterByBrand('audi')">Audi</a></li>
+                            <li><a href="#" onclick="filterByBrand('volkswagen')">Volkswagen</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                
+                <main class="catalog">
+                    <h2 class="section-title" id="favorites-title">Избранные товары</h2>
+                    
+                    <div class="products" id="favorites-container">
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page" id="delivery-page">
+        <div class="container">
+            <div class="page-content">
+                <h2>Доставка и оплата</h2>
+                
+                <h3>Способы доставки</h3>
+                <p>Мы осуществляем доставку автозапчастей по всему Казахстану следующими способами:</p>
+                <ul>
+                    <li><strong>Курьерская доставка по Семей</strong> - в течение 1-2 дней, стоимость 1000 ₸</li>
+                    <li><strong>Самовывоз</strong> - наш склад расположен по адресу: г. Семей, ул. Автозапчастей, 123</li>
+                    <li><strong>Доставка по Казахстану</strong> - через службы доставки (Казпочта, СДЭК, Dostavista), сроки и стоимость зависят от региона</li>
+                </ul>
+                
+                <h3>Способы оплаты</h3>
+                <p>Вы можете оплатить заказ удобным для вас способом:</p>
+                <ul>
+                    <li><strong>Наличными</strong> - при получении заказа (только для доставки по Семей)</li>
+                    <li><strong>Банковской картой</strong> - онлайн оплата через платежный шлюз</li>
+                    <li><strong>Банковский перевод</strong> - на расчетный счет компании</li>
+                    <li><strong>Рассрочка</strong> - доступна для некоторых товаров (уточняйте у менеджера)</li>
+                </ul>
+                
+                <h3>Гарантии</h3>
+                <p>Мы гарантируем:</p>
+                <ul>
+                    <li>100% оригинальность всех запчастей</li>
+                    <li>Возврат или обмен в течение 14 дней</li>
+                    <li>Консультацию по подбору запчастей</li>
+                    <li>Поддержку после покупки</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page" id="about-page">
+        <div class="container">
+            <div class="page-content">
+                <h2>О компании</h2>
+                
+                <p><strong>AutoParts.kz</strong> - это один из крупнейших поставщиков автозапчастей в Казахстане. Мы работаем на рынке с 2010 года и за это время заслужили доверие тысяч клиентов по всей стране.</p>
+                
+                <h3>Наша миссия</h3>
+                <p>Мы стремимся сделать покупку автозапчастей простой, быстрой и выгодной для каждого клиента. Наша цель - обеспечить автовладельцев качественными запчастями по доступным ценам с максимальным уровнем сервиса.</p>
+                
+                <h3>Наши преимущества</h3>
+                <ul>
+                    <li>Широкий ассортимент - более 10 000 наименований запчастей</li>
+                    <li>Только проверенные поставщики и оригинальные запчасти</li>
+                    <li>Профессиональные консультации по подбору запчастей</li>
+                    <li>Гибкая система скидок для постоянных клиентов</li>
+                    <li>Быстрая доставка по всему Казахстану</li>
+                    <li>Собственный склад в Семей</li>
+                </ul>
+                
+                <h3>Наша команда</h3>
+                <p>В нашей компании работают профессионалы с многолетним опытом в автомобильной сфере. Наши менеджеры помогут подобрать нужные запчасти для вашего автомобиля, а технические специалисты проконсультируют по вопросам установки и эксплуатации.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page" id="contacts-page">
+        <div class="container">
+            <div class="page-content">
+                <h2>Контакты</h2>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+                    <div style="width: 48%;">
+                        <h3>Наши реквизиты</h3>
+                        <p><strong>ТОО "AutoParts.kz"</strong></p>
+                        <p>БИН: 1234567890</p>
+                        <p>Юридический адрес: г. Семей, ул. Автозапчастей, 123</p>
+                        <p>Телефон: +7-705-529-93-50</p>
+                        <p>Email: info@autoparts.kz</p>
+                        <p>Режим работы: Пн-Пт 9:00-20:00, Сб-Вс 10:00-18:00</p>
+                    </div>
+                    
+                    <div style="width: 48%;">
+                        <h3>Схема проезда</h3>
+                        <div style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            [Здесь будет карта]
+                        </div>
+                        <p>Наш офис и склад расположены в центре Семей. Для посетителей доступна бесплатная парковка.</p>
+                    </div>
+                </div>
+                
+                <h3>Обратная связь</h3>
+                <p>Если у вас есть вопросы или предложения, заполните форму ниже и мы свяжемся с вами в ближайшее время.</p>
+                
+                <form style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <div style="width: 48%;">
+                            <label for="contact-name">Ваше имя</label>
+                            <input type="text" id="contact-name" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="width: 48%;">
+                            <label for="contact-phone">Телефон</label>
+                            <input type="tel" id="contact-phone" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label for="contact-message">Сообщение</label>
+                        <textarea id="contact-message" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="background-color: #f39c12; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-header">
+            <h3 class="cart-title">Корзина</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        
+        <div class="cart-items" id="cart-items">
+        </div>
+        
+        <div class="cart-total" id="cart-total">
+            Итого: 0 ₸
+        </div>
+        
+        <button class="checkout-btn" id="checkout-btn">Оформить заказ</button>
+        
+        <div class="checkout-form" id="checkout-form">
+            <h3>Оформление заказа</h3>
+            
+            <div class="form-group">
+                <label for="name">ФИО*</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Телефон*</label>
+                <input type="tel" id="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="city">Город*</label>
+                <select id="city" required>
+                    <option value="">Выберите город</option>
+                    <option value="semey">Семей</option>
+                    <option value="astana">Астана</option>
+                    <option value="almaty">Алматы</option>
+                    <option value="shymkent">Шымкент</option>
+                    <option value="karaganda">Караганда</option>
+                    <option value="aktobe">Актобе</option>
+                    <option value="other">Другой город</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Адрес доставки</label>
+                <input type="text" id="address">
+            </div>
+            
+            <div class="form-group">
+                <label for="payment">Способ оплаты*</label>
+                <select id="payment" required>
+                    <option value="">Выберите способ оплаты</option>
+                    <option value="cash">Наличными при получении</option>
+                    <option value="card">Картой онлайн</option>
+                    <option value="transfer">Банковский перевод</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="comments">Комментарий к заказу</label>
+                <textarea id="comments" rows="3"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button class="back-to-cart" id="back-to-cart">Назад в корзину</button>
+                <button class="submit-order" id="submit-order">Подтвердить заказ</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cart-overlay" id="favorites-overlay">
+        <div class="cart-header">
+            <h3 class="cart-title">Избранное</h3>
+            <button class="close-cart" onclick="toggleFavorites()">×</button>
+        </div>
+        
+        <div class="cart-items" id="favorites-items">
+        </div>
+        
+        <div class="cart-total">
+            <button class="checkout-btn" onclick="showPage('catalog')">Продолжить покупки</button>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>AutoParts.kz - крупнейший поставщик автозапчастей в Казахстане. Мы работаем с 2010 года и предлагаем только качественные товары.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>г. Семей, ул. Автозапчастей, 123</li>
+                        <li>+7-705-529-93-50</li>
+                        <li>info@autoparts.kz</li>
+                        <li>Режим работы: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Полезные ссылки</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="delivery">Доставка и оплата</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">О компании</a></li>
+                        <li><a href="#" class="nav-link" data-page="contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 AutoParts.kz - Все права защищены
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        const products = [
+            { id: 1, title: 'Тормозные колодки Brembo для Toyota Camry 2015-2020', price: 15000, image: 'https://via.placeholder.com/200', category: 'brakes', brand: 'toyota' },
+            { id: 2, title: 'Масляный фильтр Mann для Hyundai Tucson 2010-2015', price: 3500, image: 'https://via.placeholder.com/200', category: 'filters', brand: 'hyundai' },
+            { id: 3, title: 'Свечи зажигания NGK для Lexus RX350 2012-2018', price: 8200, image: 'https://via.placeholder.com/200', category: 'engine', brand: 'lexus' },
+            { id: 4, title: 'Амортизатор KYB для Nissan Qashqai 2014-2019', price: 25000, image: 'https://via.placeholder.com/200', category: 'suspension', brand: 'nissan' },
+            { id: 5, title: 'Ремень ГРМ Gates для Kia Sportage 2011-2016', price: 12500, image: 'https://via.placeholder.com/200', category: 'engine', brand: 'kia' },
+            { id: 6, title: 'Воздушный фильтр Bosch для BMW X5 2013-2018', price: 7800, image: 'https://via.placeholder.com/200', category: 'filters', brand: 'bmw' },
+            { id: 7, title: 'Тормозной диск ATE для Mercedes E-class 2010-2016', price: 32000, image: 'https://via.placeholder.com/200', category: 'brakes', brand: 'mercedes' },
+            { id: 8, title: 'Лампа фары Philips для Audi A4 2015-2019', price: 4500, image: 'https://via.placeholder.com/200', category: 'electrics', brand: 'audi' },
+            { id: 9, title: 'Щетки стеклоочистителя Bosch для Volkswagen Tiguan', price: 6500, image: 'https://via.placeholder.com/200', category: 'body', brand: 'volkswagen' },
+            { id: 10, title: 'Моторное масло Mobil 5W-40 5л', price: 18000, image: 'https://via.placeholder.com/200', category: 'oils', brand: 'all' },
+            { id: 11, title: 'Трансмиссионное масло ZIC 75W-90 4л', price: 15000, image: 'https://via.placeholder.com/200', category: 'oils', brand: 'all' },
+            { id: 12, title: 'Рулевая тяга TRW для Toyota RAV4 2012-2018', price: 21000, image: 'https://via.placeholder.com/200', category: 'suspension', brand: 'toyota' }
+        ];
+        
+        let cart = [];
+        let favorites = [];
+        let currentCategory = 'all';
+        let currentBrand = 'all';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts(products);
+            renderCatalogProducts(products);
+            updateFavoritesCount();
+            
+            document.getElementById('checkout-btn').addEventListener('click', showCheckoutForm);
+            document.getElementById('back-to-cart').addEventListener('click', hideCheckoutForm);
+            document.getElementById('submit-order').addEventListener('click', submitOrder);
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+        
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId + '-page').classList.add('active');
+            
+            if (pageId === 'favorites') {
+                renderFavorites();
+            }
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function renderProducts(productsToRender) {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                productsContainer.innerHTML = '<p>Товары не найдены</p>';
+                return;
+            }
+            
+            const productsToShow = productsToRender.slice(0, 6);
+            
+            productsToShow.forEach(product => {
+                const isFavorite = favorites.some(item => item.id === product.id);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price.toLocaleString()} ₸</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id}, '${product.title}', ${product.price}, '${product.image}')">В корзину</button>
+                            <button class="favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, '${product.title}', ${product.price}, '${product.image}', event)">♥</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+            });
+        }
+        
+        function renderCatalogProducts(productsToRender) {
+            const productsContainer = document.getElementById('products-container-catalog');
+            productsContainer.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                productsContainer.innerHTML = '<p>Товары не найдены</p>';
+                return;
+            }
+            
+            productsToRender.forEach(product => {
+                const isFavorite = favorites.some(item => item.id === product.id);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price.toLocaleString()} ₸</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id}, '${product.title}', ${product.price}, '${product.image}')">В корзину</button>
+                            <button class="favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, '${product.title}', ${product.price}, '${product.image}', event)">♥</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+            });
+        }
+        
+        function renderFavorites() {
+            const favoritesContainer = document.getElementById('favorites-container');
+            favoritesContainer.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                favoritesContainer.innerHTML = '<p>В избранном пока нет товаров</p>';
+                return;
+            }
+            
+            favorites.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price.toLocaleString()} ₸</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id}, '${product.title}', ${product.price}, '${product.image}')">В корзину</button>
+                            <button class="favorite active" onclick="toggleFavorite(${product.id}, '${product.title}', ${product.price}, '${product.image}', event)">♥</button>
+                        </div>
+                    </div>
+                `;
+                
+                favoritesContainer.appendChild(productCard);
+            });
+        }
+        
+        function renderFavoritesOverlay() {
+            const favoritesItems = document.getElementById('favorites-items');
+            favoritesItems.innerHTML = '';
+            
+            favorites.forEach(product => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'cart-item';
+                favoriteItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${product.title}</h4>
+                        <div class="cart-item-price">${product.price.toLocaleString()} ₸</div>
+                        <button class="cart-item-remove" onclick="toggleFavorite(${product.id}, '', 0, '', event)">Удалить</button>
+                    </div>
+                `;
+                
+                favoritesItems.appendChild(favoriteItem);
+            });
+        }
+        
+        function toggleFavorite(id, title, price, image, event) {
+            event.stopPropagation();
+            
+            const existingIndex = favorites.findIndex(item => item.id === id);
+            
+            if (existingIndex >= 0) {
+                favorites.splice(existingIndex, 1);
+            } else {
+                if (title && price && image) {
+                    favorites.push({ id, title, price, image });
+                }
+            }
+            
+            updateFavoritesCount();
+            renderFavoritesOverlay();
+            
+            document.querySelectorAll('.favorite').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            favorites.forEach(fav => {
+                const favoriteBtns = document.querySelectorAll(`.favorite[onclick*="${fav.id}"]`);
+                favoriteBtns.forEach(btn => {
+                    btn.classList.add('active');
+                });
+            });
+            
+            if (document.getElementById('favorites-page').classList.contains('active')) {
+                renderFavorites();
+            }
+            
+            renderProducts(products);
+            renderCatalogProducts(products);
+        }
+        
+        function updateFavoritesCount() {
+            document.getElementById('favorites-count').textContent = favorites.length;
+        }
+        
+        function toggleFavorites() {
+            renderFavoritesOverlay();
+            document.getElementById('favorites-overlay').classList.toggle('active');
+        }
+        
+        function filterByCategory(category) {
+            currentCategory = category;
+            updateActiveCategory(category);
+            filterProducts();
+        }
+        
+        function filterByBrand(brand) {
+            currentBrand = brand;
+            updateActiveBrand(brand);
+            filterProducts();
+        }
+        
+        function updateActiveCategory(category) {
+            const categoryLinks = document.querySelectorAll('#category-list a, #category-list-catalog a, #category-list-favorites a');
+            categoryLinks.forEach(link => {
+                if (link.getAttribute('onclick').includes(`'${category}'`)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        
+        function updateActiveBrand(brand) {
+            const brandLinks = document.querySelectorAll('#brand-list a, #brand-list-catalog a, #brand-list-favorites a');
+            brandLinks.forEach(link => {
+                if (link.getAttribute('onclick').includes(`'${brand}'`)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        
+        function filterProducts() {
+            let filteredProducts = products;
+            
+            if (currentCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === currentCategory);
+            }
+            
+            if (currentBrand !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.brand === currentBrand);
+            }
+            
+            updateCatalogTitle();
+            
+            const activePage = document.querySelector('.page.active').id;
+            
+            if (activePage === 'home-page') {
+                renderProducts(filteredProducts);
+            } else if (activePage === 'catalog-page') {
+                renderCatalogProducts(filteredProducts);
+            } else if (activePage === 'favorites-page') {
+                renderFavorites();
+            }
+        }
+        
+        function updateCatalogTitle() {
+            const titleElement = document.getElementById('catalog-title');
+            let title = 'Товары';
+            
+            if (currentCategory !== 'all' || currentBrand !== 'all') {
+                const categoryNames = {
+                    'all': 'Все категории',
+                    'engine': 'Двигатель',
+                    'transmission': 'Трансмиссия',
+                    'suspension': 'Подвеска',
+                    'brakes': 'Тормозная система',
+                    'electrics': 'Электрика',
+                    'body': 'Кузовные детали',
+                    'interior': 'Салон',
+                    'filters': 'Фильтры',
+                    'oils': 'Масла и жидкости'
+                };
+                
+                const brandNames = {
+                    'all': 'Все производители',
+                    'toyota': 'Toyota',
+                    'lexus': 'Lexus',
+                    'nissan': 'Nissan',
+                    'hyundai': 'Hyundai',
+                    'kia': 'Kia',
+                    'bmw': 'BMW',
+                    'mercedes': 'Mercedes',
+                    'audi': 'Audi',
+                    'volkswagen': 'Volkswagen'
+                };
+                
+                if (currentCategory !== 'all' && currentBrand !== 'all') {
+                    title = `${categoryNames[currentCategory]} для ${brandNames[currentBrand]}`;
+                } else if (currentCategory !== 'all') {
+                    title = categoryNames[currentCategory];
+                } else if (currentBrand !== 'all') {
+                    title = `Запчасти для ${brandNames[currentBrand]}`;
+                }
+            } else {
+                title = 'Все товары';
+            }
+            
+            if (titleElement) {
+                titleElement.textContent = title;
+            }
+        }
+        
+        function toggleCart() {
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+        
+        function addToCart(id, title, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    title,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            toggleCart();
+        }
+        
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+        
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartCountElement = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            cartItemsElement.innerHTML = '';
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            let totalPrice = 0;
+            
+            cart.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.title}</h4>
+                        <div class="cart-item-price">${item.price.toLocaleString()} ₸ × ${item.quantity} = ${(item.price * item.quantity).toLocaleString()} ₸</div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Удалить</button>
+                    </div>
+                `;
+                
+                cartItemsElement.appendChild(cartItemElement);
+            });
+            
+            cartTotalElement.textContent = `Итого: ${totalPrice.toLocaleString()} ₸`;
+        }
+        
+        function showCheckoutForm() {
+            if (cart.length === 0) {
+                alert('Ваша корзина пуста!');
+                return;
+            }
+            
+            document.getElementById('cart-items').style.display = 'none';
+            document.getElementById('cart-total').style.display = 'none';
+            document.getElementById('checkout-btn').style.display = 'none';
+            document.getElementById('checkout-form').style.display = 'block';
+        }
+        
+        function hideCheckoutForm() {
+            document.getElementById('cart-items').style.display = 'block';
+            document.getElementById('cart-total').style.display = 'block';
+            document.getElementById('checkout-btn').style.display = 'block';
+            document.getElementById('checkout-form').style.display = 'none';
+        }
+        
+        function submitOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const payment = document.getElementById('payment').value;
+            
+            if (!name || !phone || !city || !payment) {
+                alert('Пожалуйста, заполните все обязательные поля (помечены *)');
+                return;
+            }
+            
+            // Здесь должна быть логика отправки заказа на сервер
+            alert('Ваш заказ успешно оформлен! Мы свяжемся с вами в ближайшее время для подтверждения.');
+            
+            // Очищаем корзину после оформления заказа
+            cart = [];
+            updateCart();
+            hideCheckoutForm();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
